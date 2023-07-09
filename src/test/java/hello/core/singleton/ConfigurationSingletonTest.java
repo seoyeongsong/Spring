@@ -34,4 +34,18 @@ public class ConfigurationSingletonTest {
         assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
         assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
     }
+
+
+    @Test
+    @DisplayName("configuration annotation test")
+    void configurationDeep() {
+
+        // AppConfig 클래스를 매개변수로 사용하면, AppConfig 자체도 Bean으로 등록되기 때문에
+        // 클래스를 getBean으로 찾아 조회할 수 있다.
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        System.out.println("bean.getClass = " + bean.getClass());
+        System.out.println("bean = " + bean);
+    }
 }

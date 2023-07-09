@@ -19,8 +19,12 @@ public class AppConfig {
     /*생성자를 통한 객체 주입*/
 
     // refactoring : 각 역할이 드러나도록 메소드 추출
+
+    // Bean 등록될 때 어떤 순서로 호출되는지 알아보기 위해 soutm 단축키를 통해 print 해보자.
+
     @Bean
     public MemberService memberService() {
+        System.out.println("AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
@@ -29,11 +33,14 @@ public class AppConfig {
 //        return new MemoryMemberRepository();
 //    }
     public MemberRepository memberRepository() {
+        System.out.println("AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+
+        System.out.println("AppConfig.orderService");
         return new OrderServiceImpl(discountPolicy(), memberRepository());
    }
 
