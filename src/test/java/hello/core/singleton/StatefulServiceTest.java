@@ -1,6 +1,5 @@
 package hello.core.singleton;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -8,7 +7,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class StatefulServiceTest {
 
@@ -43,6 +41,22 @@ class StatefulServiceTest {
             return new StatefulService();
         }
 
+    }
+
+
+    @Test
+    @DisplayName("Stateful Singleton test")
+    void StatefulSingletonTest() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
+
+        StatefulService statefulService = ac.getBean("statefulService", StatefulService.class);
+
+        int priceA = statefulService.order("userA", 10000);
+
+        int priceB = statefulService.order("userB", 20000);
+
+        System.out.println("priceA = " + priceA);
+        System.out.println("priceB = " + priceB);
     }
 
 }
