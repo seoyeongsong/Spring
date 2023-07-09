@@ -25,7 +25,10 @@ public class AppConfig {
     }
 
     @Bean
-    private static MemberRepository memberRepository() {
+//    private static MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
 
