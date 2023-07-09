@@ -57,6 +57,8 @@ class StatefulServiceTest {
 
         System.out.println("priceA = " + priceA);
         System.out.println("priceB = " + priceB);
+
+        assertThat(priceA).isNotEqualTo(priceB);
     }
 
 }
