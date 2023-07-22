@@ -1,23 +1,16 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
-import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
-
-//    private final MemberRepository memberRepository = new MemoryMemberRepository();
-//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
-//    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
-
-    @Autowired private DiscountPolicy discountPolicy;
-    @Autowired private MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
 
 
     // final 선언을 삭제하고, setter를 생성해준 뒤 @Autowired 어노테이션을 추가하여 주입할 수 있다.
@@ -34,12 +27,12 @@ public class OrderServiceImpl implements OrderService{
 //    }
 
     // 스프링 빈을 등록할 때 객체를 생성하기 위해 생성자를 호출하기 때문에 함께 의존성 주입이 일어난다.
-    public OrderServiceImpl(DiscountPolicy discountPolicy, MemberRepository memberRepository) {
-        System.out.println("1. discountPolicy = " + discountPolicy);
-        System.out.println("1. memberRepository = " + memberRepository);
-        this.discountPolicy = discountPolicy;
-        this.memberRepository = memberRepository;
-    }
+//    public OrderServiceImpl(DiscountPolicy discountPolicy, MemberRepository memberRepository) {
+//        System.out.println("1. discountPolicy = " + discountPolicy);
+//        System.out.println("1. memberRepository = " + memberRepository);
+//        this.discountPolicy = discountPolicy;
+//        this.memberRepository = memberRepository;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
