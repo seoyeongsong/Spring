@@ -4,6 +4,7 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,7 +28,7 @@ public class OrderServiceImpl implements OrderService{
 //    }
 
     // 스프링 빈을 등록할 때 객체를 생성하기 위해 생성자를 호출하기 때문에 함께 의존성 주입이 일어난다.
-    public OrderServiceImpl(DiscountPolicy discountPolicy, MemberRepository memberRepository) {
+    public OrderServiceImpl(@Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy, MemberRepository memberRepository) {
         System.out.println("1. discountPolicy = " + discountPolicy);
         System.out.println("1. memberRepository = " + memberRepository);
         this.discountPolicy = discountPolicy;
