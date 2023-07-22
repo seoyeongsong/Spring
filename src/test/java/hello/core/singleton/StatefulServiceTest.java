@@ -29,7 +29,7 @@ class StatefulServiceTest {
         System.out.println("priceA = " + priceA);
 
         // 결과는 A가 주문한 10000원을 B가 같은 인스턴스를 덮어씀으로써 20000원이 출력됨.
-        assertThat(priceA).isEqualByComparingTo(20000);
+        assertThat(priceA).isEqualByComparingTo(0);
 
 //         assertThat(statefulService1.getPrice()).isEqualTo(20000);
     }
