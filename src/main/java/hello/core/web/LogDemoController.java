@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-//    private final MyLogger myLogger;
-    private final ObjectProvider<MyLogger> myLoggerObjectProvider;
+    private final MyLogger myLogger;
+//    private final ObjectProvider<MyLogger> myLoggerObjectProvider;
     @RequestMapping("log-demo")
     @ResponseBody
     public String logDemo(HttpServletRequest httpServletRequest) {
-        MyLogger myLogger = myLoggerObjectProvider.getObject();
+//        MyLogger myLogger = myLoggerObjectProvider.getObject();
+        System.out.println("myLogger = " + myLogger);
         String requestUrl = httpServletRequest.getRequestURL().toString();
         myLogger.setRequestUrl(requestUrl);
 
